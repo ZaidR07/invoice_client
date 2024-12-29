@@ -80,8 +80,9 @@ const Products = () => {
       link.setAttribute("download", "file.pdf"); // Set a default filename
       document.body.appendChild(link);
       link.click();
-      
-      link.parentNode.removeChild(link);
+      if (link.parentNode) {
+        link.parentNode.removeChild(link);
+      }
     } catch (error) {
       console.error("Error downloading PDF:", error);
       toast.error("Something went wrong!");
