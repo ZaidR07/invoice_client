@@ -1,1 +1,1 @@
-export const uri = "http://localhost:8000/api/"
+export const uri = "https://invoice-server-2780.onrender.com/api/"

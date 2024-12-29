@@ -42,7 +42,9 @@ const Products = () => {
 
   const createPdf = async () => {
     try {
-      const response = await axios.post(`${uri}createpdf`, prodata);
+      const response = await axios.post(`${uri}createpdf`, prodata,{
+        withCredentials : true
+      });
 
       if (response.status == 200) {
         toast.success("Pdf Generated Successfully");
@@ -59,13 +61,17 @@ const Products = () => {
 
   const downloadpdf = async () => {
     try {
-      console.log(pdfUrl,"dfgg");
+      
       
       const response = await axios.post(
         `${uri}downloadpdf`,
         { path: pdfUrl },
-        { responseType: "blob" } // Ensure binary data is handled correctly
+        {
+          responseType: "blob", // Ensure binary data is handled correctly
+          withCredentials: true, // Attach credentials such as cookies
+        }
       );
+      
   
       // Create a URL for the blob and initiate download
       const url = window.URL.createObjectURL(new Blob([response.data]));
